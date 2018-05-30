@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC   
+    "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxh.fang.Dao.ProductDao">
+
+
+
+	<update id="modifyNotopen">
+		update t_product set struts=#{struts} where
+		product_id = #{productid}
+	</update>
+
+	<update id="modifyAlreadyopen">
+		update t_product set struts=#{struts} where
+		product_id =#{productid}
+	</update>
+
+	<update id="modifySoldout">
+		update t_product set struts=#{struts} where
+		product_id =#{productid}
+	</update>
+
+	<update id="modifyProduct">
+
+
+		UPDATE `t_product` SET `title`=#{title},
+		`subtitle`=#{subtitle},
+		`content`=#{content},
+		`writingTime`=#{writingTime},
+		`userName`=#{userName},
+		`masterGraph`=#{masterGraph},
+		`province`=#{province}, `city`=#{city},
+		`area`=#{area},
+		`address`=#{address},
+		`realEstateName`=#{realEstateName},
+		`struts`=#{struts},
+		`contactInformation`=#{contactInformation},
+		periphery=#{periphery}
+		WHERE
+		product_id=#{productid};
+
+	</update>
+
+	<insert id="addProduct" keyProperty="productid"
+		useGeneratedKeys="true" parameterType="com.xxh.fang.entity.ProductVo">
+		INSERT INTO t_product (`title`,
+		`subtitle`,
+		`content`, `writingTime`, `userName`, `masterGraph`,
+		`province`,
+		`city`, `area`, `address`, `realEstateName`, `struts`,
+		`contactInformation`,periphery) VALUES
+		(#{title}, #{subtitle},
+		#{content},
+		#{writingTime}, #{userName}, #{masterGraph},
+		#{province},
+		#{city},
+		#{area}, #{address}, #{realEstateName},
+		#{struts},
+		#{contactInformation}, #{periphery});
+	</insert>
+
+	<select id="findAll" resultType="com.xxh.fang.entity.ProductPo">
+		select * from t_product
+
+	</select>
+
+	<select id="findAllAndTheListOf" resultType="com.xxh.fang.entity.CustomerAndProductVo">
+		select p.area,
+		p.product_id,c.nickName,c.headerIconUrl,p.title,p.subtitle,p.masterGraph
+		from t_product as p INNER JOIN t_cst_customer as c on p.customerId =
+		c.customerId where area = #{area} ORDER BY
+		p.product_id DESC LIMIT 30
+
+	</select>
+
+
+	<select id="customerAndProductFind" resultType="com.xxh.fang.entity.CustomerAndProductVo">
+		select p.area,
+		p.product_id,c.nickName,c.headerIconUrl,p.title,p.subtitle,p.masterGraph
+		from t_product as p INNER JOIN t_cst_customer as c on p.customerId =
+		c.customerId ORDER BY
+		p.product_id DESC LIMIT 10
+
+
+
+	</select>
+
+	<select id="findProductId" resultType="com.xxh.fang.entity.ProductAndSkuVo">
+		select
+		p.product_id,p.title,p.subtitle,p.writingTime,p.content,p.address,s.price,s.sku_id
+		from t_product as p INNER JOIN t_sku as s ON p.product_id =
+		s.product_id
+		where p.product_id = #{product_id}
+
+	</select>
+
+
+
+
+
+</mapper>

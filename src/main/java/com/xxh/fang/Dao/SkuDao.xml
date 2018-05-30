@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC   
+    "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxh.fang.Dao.SkuDao">
+
+	<select id="findById" resultType="com.xxh.fang.entity.SkuPo">
+		select sku_id from t_Sku,product_id,typeOfHouse,price,flat,Stock where sku_id=#{skuid]
+	</select>
+
+	<update id="modifySku">
+		update t_sku set
+		product_id=#{productid},typeOfHouse=#{typeOfHouse},price=#{price},flat=#{flat},Stock=#{Stock}
+		where sku_id =#{skuid}
+
+	</update>
+
+	<insert id="addSku">
+		INSERT INTO t_sku(`product_id`,
+		`typeOfHouse`, `price`, `flat`, `Stock`)
+		VALUES (#{productid}, #{typeOfHouse}, #{price}, #{flat},
+		#{stock});
+
+	</insert>
+
+</mapper>
