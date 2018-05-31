@@ -1,7 +1,6 @@
 package com.xxh.fang.ServiceImpl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -164,7 +163,7 @@ public class ProductServiceImpl implements ProductService {
 		if (modifyProduct < 1) {
 			throw new RuntimeException("修改失败");
 		}
-		modifyProductVo.getSkuVo().setProductid(modifyProductVo.getProductVo().getProductid());
+		modifyProductVo.getSkuVo().setProductid(modifyProductVo.getProductVo().getProduct_id());
 		Integer modifySku = skuDao.modifySku(modifyProductVo.getSkuVo());
 		if (modifySku > 0) {
 			bo.setMsg("修改成功");
@@ -224,7 +223,7 @@ public class ProductServiceImpl implements ProductService {
 		}
 		List<SkuVo> skuList = product.getSkuList();
 		for (SkuVo skuVo : skuList) {
-			skuVo.setProductid(vo.getProductid());
+			skuVo.setProductid(vo.getProduct_id());
 
 			SkuPo target = new SkuPo();
 			BeanUtils.copyProperties(skuVo, target);
@@ -270,23 +269,14 @@ public class ProductServiceImpl implements ProductService {
 
 	}
 
-	public List<Map<String, Object>> findProductId(ProductAndSkuVo productAndSkuvo) {
-		/*
-		 * List<ProductAndSkuVo> list = new ArrayList<ProductAndSkuVo>();
-		 * ProductAndSkuPo productAndSkuPo = new ProductAndSkuPo();
-		 * 
-		 * BeanUtils.copyProperties(productAndSkuvo, productAndSkuPo);
-		 * 
-		 * List<ProductAndSkuPo> po = productDao.findProductId(productAndSkuPo);
-		 * for(ProductAndSkuPo p:po){ ProductAndSkuVo ps = new
-		 * ProductAndSkuVo(); BeanUtils.copyProperties(p, ps); list.add(ps);
-		 * 
-		 * }
-		 */
+	public ProductAndSkuVo findProductAndSku(ProductAndSkuVo productAndSkuVo) {
 
-		
-		
-		return productDao.findProductId(productAndSkuvo);
+		ProductVo vo = productDao.findProductId(productAndSkuVo.getProductVo().getProduct_id());
+
+		List<SkuVo> listskuvo = skuDao.findById(productAndSkuVo.getProductVo().getProduct_id());
+		productAndSkuVo.setSkuList(listskuvo);
+		productAndSkuVo.setProductVo(vo);
+		return productAndSkuVo;
 	}
 
 }

@@ -29,7 +29,7 @@ public class ProductApiImpl implements ProductApi {
 	 * @return
 	 */
 	public List<CustomerAndProductVo> findAllAndTheListOf(String aera) {
-		
+
 		return productService.findAllAndTheListOf(aera);
 	}
 
@@ -39,14 +39,13 @@ public class ProductApiImpl implements ProductApi {
 	public List<CustomerAndProductVo> customerAndProductFind() {
 		return productService.customerAndProductFind();
 	}
+
 	/**
 	 * 产品和sku表
 	 */
-	public List<Map<String,Object>> findProductId(ProductAndSkuVo productAndSkuvo){
-		return productService.findProductId(productAndSkuvo);
-		
+	public ProductAndSkuVo findProductAndSku(ProductAndSkuVo productAndSkuVo) {
+		return productService.findProductAndSku(productAndSkuVo);
+
 	}
-	
-	
 
 }

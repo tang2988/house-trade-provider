@@ -30,7 +30,7 @@ public class ProductServiceTest {
 	@Resource
 	ProductServiceImpl productServiceImpl;
 
-	@Test
+	/*@Test
 	public void modifyNotopen() {
 		ProductVo productvo = new ProductVo();
 		productvo.setProductid(1L);
@@ -113,13 +113,13 @@ public class ProductServiceTest {
 		skuvo.setSkuid(15L);
 		skuvo.setProductid(20L);
 		modifyProductVo.setSkuVo(skuvo);
-		/*
+		
 		 * SkuPo poTwo = new SkuPo();
 		 * 
 		 * poTwo.setFlat(140); poTwo.setProductid(productvo.getProductid());
 		 * poTwo.setPrice(new BigDecimal(22000000)); poTwo.setStock(120);
 		 * poTwo.setTypeOfHouse("三室一厅"); poTwo.setSkuid(13L);
-		 */
+		 
 
 		productvo.setProductid(20L);
 		productvo.setArea("盐田22");
@@ -142,11 +142,7 @@ public class ProductServiceTest {
 		System.out.println(aa);
 	}
 
-	@Test
-	public void findAll() {
-		 List<ProductVo> b = productServiceImpl.findAll();
-		System.out.println(b);
-	}
+	
 
 	@Test
 	public void aera() {
@@ -157,9 +153,18 @@ public class ProductServiceTest {
 
 	@Test
 	public void findProductId() {
-		ProductAndSkuVo productAndSkuvo = new ProductAndSkuVo();
-		productAndSkuvo.setProduct_id(20L);
-		List<Map<String, Object>> b = productServiceImpl.findProductId(productAndSkuvo);
+
+		ProductAndSkuVo productAndSkuVo = new ProductAndSkuVo();
+		ProductVo productVo = new ProductVo();
+		productVo.setProductid(21L);
+		productAndSkuVo.setProductVo(productVo);
+		ProductAndSkuVo b = productServiceImpl.findProductAndSku(productAndSkuVo);
+		
+		System.out.println(b);
+	}*/
+	@Test
+	public void findAll() {
+		List<ProductVo> b = productServiceImpl.findAll();
 		System.out.println(b);
 	}
 }

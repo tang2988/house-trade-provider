@@ -86,14 +86,15 @@
 
 	</select>
 
-	<select id="findProductId" resultType="com.xxh.fang.entity.ProductAndSkuVo">
-		select
-		p.product_id,p.title,p.subtitle,p.writingTime,p.content,p.address,s.price,s.sku_id
-		from t_product as p INNER JOIN t_sku as s ON p.product_id =
-		s.product_id
-		where p.product_id = #{product_id}
+	<select id="findProductId" resultType="com.xxh.fang.entity.ProductVo">
+		<!-- select p.product_id, p.title,p.subtitle,p.writingTime,p.content,p.address,s.price,s.sku_id,s.typeOfHouse 
+			from t_product as p INNER JOIN t_sku as s ON p.product_id = s.product_id 
+			where p.product_id =#{producId} -->
+		select * from  t_product where product_id =#{productId}
 
 	</select>
+
+
 
 
 

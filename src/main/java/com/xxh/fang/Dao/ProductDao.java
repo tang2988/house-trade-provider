@@ -68,6 +68,6 @@ public interface ProductDao {
 	/**
 	 * 产品id查询
 	 */
-	public List<Map<String, Object>> findProductId(ProductAndSkuVo productAndSkuvo);
+	public ProductVo findProductId(Long productId);
 
 }

@@ -74,12 +74,13 @@ public class ProductPo implements Serializable {
 	public ProductPo() {
 	}
 
-	public Long getProductid() {
+	
+	public Long getProduct_id() {
 		return product_id;
 	}
 
-	public void setProductid(Long productid) {
-		this.product_id = productid;
+	public void setProduct_id(Long product_id) {
+		this.product_id = product_id;
 	}
 
 	public String getTitle() {

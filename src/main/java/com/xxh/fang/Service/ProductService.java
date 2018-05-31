@@ -65,8 +65,7 @@ public interface ProductService {
 	public List<CustomerAndProductVo> customerAndProductFind();
 	
 	/**
-	 * 产品id查询
+	 * 产品id查询 
 	 */
-	public List<Map<String, Object>> findProductId(ProductAndSkuVo productAndSkuvo);
-
+	public ProductAndSkuVo findProductAndSku(ProductAndSkuVo productAndSkuVo);
 }
