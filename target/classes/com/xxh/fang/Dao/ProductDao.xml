@@ -93,6 +93,10 @@
 		select * from  t_product where product_id =#{productId}
 
 	</select>
+	
+	<update id="modifyreadthenumber">
+		update t_product SET readthenumber=readthenumber+1 where product_id = #{productId}
+	</update>
 
 
 

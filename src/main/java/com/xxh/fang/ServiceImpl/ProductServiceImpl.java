@@ -279,4 +279,25 @@ public class ProductServiceImpl implements ProductService {
 		return productAndSkuVo;
 	}
 
+	public ResVo modifyreadthenumber(Long productId) {
+		ResVo vo = new ResVo();
+		Integer modifyreadthenumber = productDao.modifyreadthenumber(productId);
+		if (modifyreadthenumber < 1) {
+			vo.setMsg("修改失败");
+			vo.setSuccess(false);
+		}
+		ProductVo findProductId = productDao.findProductId(productId);
+		if (findProductId != null) {
+			vo.setMsg("修改成功");
+			vo.setData(findProductId);
+			vo.setSuccess(true);
+		} else {
+			vo.setMsg("失败");
+
+			vo.setSuccess(false);
+		}
+
+		return vo;
+	}
+
 }

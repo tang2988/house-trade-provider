@@ -1,10 +1,6 @@
 package com.xxh.Test;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -15,13 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.xxh.fang.ServiceImpl.ProductServiceImpl;
 import com.xxh.fang.Util.ResVo;
+import com.xxh.fang.api.ProductApiImpl;
 import com.xxh.fang.entity.CustomerAndProductVo;
-import com.xxh.fang.entity.ModifyProductVo;
-import com.xxh.fang.entity.ProductAndSkuBO;
-import com.xxh.fang.entity.ProductAndSkuVo;
-import com.xxh.fang.entity.ProductPo;
-import com.xxh.fang.entity.ProductVo;
-import com.xxh.fang.entity.SkuVo;
 
 @RunWith(SpringJUnit4ClassRunner.class) // 使用junit4进行测试
 @ContextConfiguration(locations = { "classpath:spring-mybatis.xml" }) // 加载配置文件
@@ -30,6 +21,8 @@ public class ProductServiceTest {
 	@Resource
 	ProductServiceImpl productServiceImpl;
 
+	@Resource
+	ProductApiImpl  productApiImpl;
 	/*@Test
 	public void modifyNotopen() {
 		ProductVo productvo = new ProductVo();
@@ -164,7 +157,18 @@ public class ProductServiceTest {
 	}*/
 	@Test
 	public void findAll() {
-		List<ProductVo> b = productServiceImpl.findAll();
+		List<CustomerAndProductVo> b = productServiceImpl.customerAndProductFind();
 		System.out.println(b);
+	}
+	@Test
+	public void finddd(){
+		 List<CustomerAndProductVo> b = productApiImpl.customerAndProductFind();
+		System.out.println(b);
+	}
+	
+	@Test
+	public void modi(){
+		 ResVo b = productServiceImpl.modifyreadthenumber(20L);
+		 System.out.println(b);
 	}
 }

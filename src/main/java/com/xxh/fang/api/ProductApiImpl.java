@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.xxh.fang.Service.ProductService;
+import com.xxh.fang.Util.ResVo;
 import com.xxh.fang.entity.CustomerAndProductVo;
 import com.xxh.fang.entity.ProductAndSkuVo;
 import com.xxh.fang.entity.ProductVo;
@@ -46,6 +47,13 @@ public class ProductApiImpl implements ProductApi {
 	public ProductAndSkuVo findProductAndSku(ProductAndSkuVo productAndSkuVo) {
 		return productService.findProductAndSku(productAndSkuVo);
 
+	}
+
+	/**
+	 * 阅读数
+	 */
+	public ResVo modifyreadthenumber(Long productId) {
+		return productService.modifyreadthenumber(productId);
 	}
 
 }

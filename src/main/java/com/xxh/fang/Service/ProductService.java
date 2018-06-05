@@ -1,7 +1,6 @@
 package com.xxh.fang.Service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.xxh.fang.Util.ResVo;
 import com.xxh.fang.entity.CustomerAndProductVo;
@@ -68,4 +67,11 @@ public interface ProductService {
 	 * 产品id查询 
 	 */
 	public ProductAndSkuVo findProductAndSku(ProductAndSkuVo productAndSkuVo);
+	
+	/**
+	 * 閲讀數
+	 * @param productId
+	 * @return
+	 */
+	public ResVo modifyreadthenumber(Long productId);
 }

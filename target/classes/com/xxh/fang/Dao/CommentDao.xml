@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC   
+    "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxh.fang.Dao.CommentDao">
+
+	<select id="sentimentHigh" resultType="com.xxh.fang.entity.CommentPo">
+		select * from t_comment
+		ORDER BY pointOfpraise desc
+
+	</select>
+
+
+	<select id="newest" resultType="com.xxh.fang.entity.CommentPo">
+		select
+		commentOnID,commentOnPeople,content,commentOfTime,product_id,repostId,pointOfpraise
+		from t_comment ORDER BY commentOfTime DESC
+
+	</select>
+
+	<select id="earliest" resultType="com.xxh.fang.entity.CommentPo">
+		select * from t_comment order
+		by commentOfTime ASC
+
+	</select>
+	<insert id="addComment" parameterType="com.xxh.fang.entity.CommentVo">
+
+		INSERT INTO t_comment
+		(commentOnPeople,content,commentOfTime,product_id,repostId,pointOfpraise)
+		VALUES(#{commentOnPeople},#{content},#{commentOfTime},#{product_id},#{repostId},#{pointOfpraise})
+
+	</insert>
+	
+	<update id="updatePointOfpraise">
+		UPDATE t_comment set pointOfpraise = pointOfpraise+1 where commentOnID = #{commentOnID}
+	</update>
+	
+	<select id="findBycommentOnID" resultType="com.xxh.fang.entity.CommentPo">
+		select * from t_comment where commentOnID = #{commentOnID}
+		
+	</select>
+
+
+</mapper>

@@ -69,5 +69,8 @@ public interface ProductDao {
 	 * 产品id查询
 	 */
 	public ProductVo findProductId(Long productId);
+	
+	public Integer modifyreadthenumber(Long productId);
+	
 
 }
