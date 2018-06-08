@@ -1,14 +1,8 @@
 package com.xxh.fang.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class CommentPo implements Serializable {
-
-	/**
-	 * 
-	 */
-	public static final long serialVersionUID = -5510578543294447829L;
+public class CommentPo {
 
 	/**
 	 * 评论id
@@ -18,7 +12,7 @@ public class CommentPo implements Serializable {
 	/**
 	 * 评论人
 	 */
-	public String commentOnPeople;
+	public Long customerId;
 
 	/**
 	 * 内容
@@ -34,18 +28,11 @@ public class CommentPo implements Serializable {
 	 * 产品id
 	 */
 	public Long product_id;
-	/**
-	 * 回帖id
-	 */
-	public Long repostId;
 
 	/**
 	 * 点赞数
 	 */
 	public Long pointOfpraise;
-
-	public CommentPo() {
-	}
 
 	public Long getCommentOnID() {
 		return commentOnID;
@@ -55,12 +42,12 @@ public class CommentPo implements Serializable {
 		this.commentOnID = commentOnID;
 	}
 
-	public String getCommentOnPeople() {
-		return commentOnPeople;
+	public Long getCustomerId() {
+		return customerId;
 	}
 
-	public void setCommentOnPeople(String commentOnPeople) {
-		this.commentOnPeople = commentOnPeople;
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
 
 	public String getContent() {
@@ -87,14 +74,6 @@ public class CommentPo implements Serializable {
 		this.product_id = product_id;
 	}
 
-	public Long getRepostId() {
-		return repostId;
-	}
-
-	public void setRepostId(Long repostId) {
-		this.repostId = repostId;
-	}
-
 	public Long getPointOfpraise() {
 		return pointOfpraise;
 	}
@@ -103,10 +82,13 @@ public class CommentPo implements Serializable {
 		this.pointOfpraise = pointOfpraise;
 	}
 
+	@Override
 	public String toString() {
-		return "CommentPo [commentOnID=" + commentOnID + ", commentOnPeople=" + commentOnPeople + ", content=" + content
-				+ ", commentOfTime=" + commentOfTime + ", product_id=" + product_id + ", repostId=" + repostId
-				+ ", pointOfpraise=" + pointOfpraise + "]";
+		return "CommentPo [commentOnID=" + commentOnID + ", customerId=" + customerId + ", content=" + content
+				+ ", commentOfTime=" + commentOfTime + ", product_id=" + product_id + ", pointOfpraise=" + pointOfpraise
+				+ "]";
 	}
+	
+	
 
 }

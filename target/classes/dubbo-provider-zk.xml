@@ -20,6 +20,15 @@
 	<bean id="commentApiImpl" class="com.xxh.fang.api.CommentApiImpl"></bean>
 
 
+
+	<dubbo:service interface="com.xxh.fang.api.GivealikeApi"
+		ref="GivealikeApiImpl" />
+	<bean id="GivealikeApiImpl" class="com.xxh.fang.api.GivealikeApiImpl"></bean>
+
+
+
+
+
 	<import resource="spring-mybatis.xml" />
 
 

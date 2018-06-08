@@ -4,40 +4,62 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxh.fang.Dao.CommentDao">
 
-	<select id="sentimentHigh" resultType="com.xxh.fang.entity.CommentPo">
-		select * from t_comment
-		ORDER BY pointOfpraise desc
-
-	</select>
-
-
-	<select id="newest" resultType="com.xxh.fang.entity.CommentPo">
+	<select id="sentimentHigh" resultType="com.xxh.fang.entity.CommentAndCustomerVo">
 		select
-		commentOnID,commentOnPeople,content,commentOfTime,product_id,repostId,pointOfpraise
-		from t_comment ORDER BY commentOfTime DESC
+		cs.nickName,cs.headerIconUrl,c.commentOnID,c.customerId,c.content,commentOfTime,product_id,pointOfpraise
+		from t_comment as c INNER JOIN t_cst_customer as cs ON cs.customerId =
+		c.customerId ORDER BY c.pointOfpraise desc
+
 
 	</select>
 
-	<select id="earliest" resultType="com.xxh.fang.entity.CommentPo">
-		select * from t_comment order
-		by commentOfTime ASC
+
+	<select id="newest" resultType="com.xxh.fang.entity.CommentAndCustomerVo">
+		select
+		cs.nickName,cs.headerIconUrl,c.commentOnID,c.customerId,c.content,commentOfTime,product_id,pointOfpraise
+		from t_comment as c INNER JOIN t_cst_customer as cs ON cs.customerId =
+		c.customerId ORDER BY c.commentOfTime DESC
+
 
 	</select>
-	<insert id="addComment" parameterType="com.xxh.fang.entity.CommentVo">
+
+	<select id="earliest" resultType="com.xxh.fang.entity.CommentAndCustomerVo">
+		select
+		cs.nickName,cs.headerIconUrl,c.commentOnID,c.customerId,c.content,commentOfTime,product_id,pointOfpraise
+		from t_comment as c INNER JOIN t_cst_customer as cs ON cs.customerId =
+		c.customerId ORDER BY c.commentOfTime ASC
+
+
+
+	</select>
+	<insert id="addComment" parameterType="com.xxh.fang.entity.CommentPo"
+		useGeneratedKeys="true" keyProperty="commentOnID">
 
 		INSERT INTO t_comment
-		(commentOnPeople,content,commentOfTime,product_id,repostId,pointOfpraise)
-		VALUES(#{commentOnPeople},#{content},#{commentOfTime},#{product_id},#{repostId},#{pointOfpraise})
+		(customerId,content,commentOfTime,product_id,pointOfpraise)
+		VALUES(#{customerId},#{content},#{commentOfTime},#{product_id},#{pointOfpraise})
 
 	</insert>
-	
+
 	<update id="updatePointOfpraise">
-		UPDATE t_comment set pointOfpraise = pointOfpraise+1 where commentOnID = #{commentOnID}
+		UPDATE t_comment set pointOfpraise = pointOfpraise+1
+		where commentOnID = #{commentOnID}
 	</update>
-	
+
 	<select id="findBycommentOnID" resultType="com.xxh.fang.entity.CommentPo">
-		select * from t_comment where commentOnID = #{commentOnID}
-		
+		select * from
+		t_comment where commentOnID = #{commentOnID}
+
+	</select>
+
+	<select id="FocusOn" resultType="java.util.HashMap">
+		SELECT tt.customerId,COUNT(1) as
+		count FROM (select
+		DISTINCT(product_id),customerId from t_comment where
+		customerId =
+		#{customerId} ) tt GROUP BY tt.customerId;
+
+
 	</select>
 
 

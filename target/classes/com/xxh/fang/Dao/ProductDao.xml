@@ -43,7 +43,7 @@
 	</update>
 
 	<insert id="addProduct" keyProperty="productid"
-		useGeneratedKeys="true" parameterType="com.xxh.fang.entity.ProductVo">
+		useGeneratedKeys="true" parameterType="com.xxh.fang.entity.ProductPo">
 		INSERT INTO t_product (`title`,
 		`subtitle`,
 		`content`, `writingTime`, `userName`, `masterGraph`,
@@ -61,7 +61,8 @@
 	</insert>
 
 	<select id="findAll" resultType="com.xxh.fang.entity.ProductPo">
-		select * from t_product
+		select * from t_product where
+		customerId = #{customerId}
 
 	</select>
 
@@ -86,16 +87,17 @@
 
 	</select>
 
-	<select id="findProductId" resultType="com.xxh.fang.entity.ProductVo">
+	<select id="findProductId" resultType="com.xxh.fang.entity.ProductPo">
 		<!-- select p.product_id, p.title,p.subtitle,p.writingTime,p.content,p.address,s.price,s.sku_id,s.typeOfHouse 
 			from t_product as p INNER JOIN t_sku as s ON p.product_id = s.product_id 
 			where p.product_id =#{producId} -->
-		select * from  t_product where product_id =#{productId}
+		select * from t_product where product_id =#{productId}
 
 	</select>
-	
+
 	<update id="modifyreadthenumber">
-		update t_product SET readthenumber=readthenumber+1 where product_id = #{productId}
+		update t_product SET readthenumber=readthenumber+1
+		where product_id = #{productId}
 	</update>
 
 

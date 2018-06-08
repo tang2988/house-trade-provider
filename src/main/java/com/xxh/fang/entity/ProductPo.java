@@ -1,15 +1,9 @@
 package com.xxh.fang.entity;
 
-import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
-public class ProductPo implements Serializable {
+public class ProductPo {
 
-	/**
-	 * 
-	 */
-	public static final long serialVersionUID = 2905839315117180648L;
 	/**
 	 * 产品Id
 	 */
@@ -71,10 +65,34 @@ public class ProductPo implements Serializable {
 	 */
 	public String periphery;
 
+	/**
+	 * 阅读数
+	 */
+	public Long readthenumber;
+	/**
+	 * 用户id
+	 */
+	public Long customerId;
+
 	public ProductPo() {
 	}
 
-	
+	public Long getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
+	}
+
+	public Long getReadthenumber() {
+		return readthenumber;
+	}
+
+	public void setReadthenumber(Long readthenumber) {
+		this.readthenumber = readthenumber;
+	}
+
 	public Long getProduct_id() {
 		return product_id;
 	}
@@ -195,13 +213,12 @@ public class ProductPo implements Serializable {
 		this.periphery = periphery;
 	}
 
-	@Override
 	public String toString() {
-		return "ProductPo [productid=" + product_id + ", title=" + title + ", subtitle=" + subtitle + ", content="
-				+ content + ", writingTime=" + writingTime + ", userName=" + userName + ", masterGraph=" + masterGraph
-				+ ", province=" + province + ", city=" + city + ", area=" + area + ", address=" + address
-				+ ", realEstateName=" + realEstateName + ", struts=" + struts + ", contactInformation="
-				+ contactInformation + ", periphery=" + periphery + "]";
+		return "ProductPo [productid=" + product_id + ",customerId=" + customerId + ", title=" + title + ", subtitle="
+				+ subtitle + ", content=" + content + ", writingTime=" + writingTime + ", userName=" + userName
+				+ ", masterGraph=" + masterGraph + ", province=" + province + ", city=" + city + ", area=" + area
+				+ ", address=" + address + ", realEstateName=" + realEstateName + ", struts=" + struts
+				+ ", contactInformation=" + contactInformation + ", periphery=" + periphery + "]";
 	}
 
 }

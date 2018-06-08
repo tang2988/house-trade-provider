@@ -1,16 +1,14 @@
-package com.xxh.fang.Dao;
+package com.xxh.fang.Service;
 
 import java.util.Map;
 
-import org.springframework.stereotype.Repository;
-
+import com.xxh.fang.Util.ResVo;
 import com.xxh.fang.entity.GivealikePo;
 import com.xxh.fang.entity.GivealikeVo;
 
-@Repository
-public interface GivealikeDao {
+public interface GivealikeService {
 
-	public Integer addGivealike(GivealikePo givealikepo);
+	public ResVo addGivealike(GivealikeVo givealikevo);
 
 	public Map<String, Object> findlike(Long customerId);
 

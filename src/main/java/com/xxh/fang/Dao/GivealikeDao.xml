@@ -6,12 +6,27 @@
 
 
 
-	<insert id="addGivealike">
+	<insert id="addGivealike" useGeneratedKeys="true" keyProperty="zanId" parameterType="com.xxh.fang.entity.GivealikePo">
 		insert INTO t_givealike
 		(product_id,customerId,pointOfTime,status)
 		VALUES(#{product_id},#{customerId},#{pointOfTime},#{status})
 
 	</insert>
+
+	<select id="findlike" resultType="java.util.HashMap">
+		select customerId,count(1) as count from
+		t_givealike where status = 10 and customerId = #{customerId} GROUP BY
+		customerId
+
+	</select>
+
+	<select id="findlikeFocuson" resultType="java.lang.Long">
+		SELECT
+		tt.customerId,COUNT(1) FROM (select DISTINCT(product_id),customerId
+		from t_comment where customerId = #{customerId} ) tt GROUP BY
+		tt.customerId;
+
+	</select>
 
 
 

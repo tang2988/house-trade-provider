@@ -44,12 +44,12 @@ public interface ProductDao {
 	/**
 	 * 添加产品
 	 */
-	public Integer addProduct(ProductVo product);
+	public Integer addProduct(ProductPo product);
 
 	/**
 	 * 查询所有
 	 */
-	public List<ProductPo> findAll();
+	public List<ProductPo> findAll(Long customerId);
 
 	/**
 	 * 区查询
@@ -68,9 +68,8 @@ public interface ProductDao {
 	/**
 	 * 产品id查询
 	 */
-	public ProductVo findProductId(Long productId);
-	
+	public ProductPo findProductId(Long productId);
+
 	public Integer modifyreadthenumber(Long productId);
-	
 
 }

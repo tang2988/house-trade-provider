@@ -1,17 +1,13 @@
 package com.xxh.fang.api;
 
-import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.xxh.fang.Service.ProductService;
 import com.xxh.fang.Util.ResVo;
-import com.xxh.fang.entity.CustomerAndProductVo;
+import com.xxh.fang.entity.ProductAndSkuBO;
 import com.xxh.fang.entity.ProductAndSkuVo;
-import com.xxh.fang.entity.ProductVo;
 
 @Service
 public class ProductApiImpl implements ProductApi {
@@ -19,9 +15,9 @@ public class ProductApiImpl implements ProductApi {
 	@Resource
 	ProductService productService;
 
-	public List<ProductVo> findAll() {
 
-		return productService.findAll();
+	public ResVo findAll(Long customerId) {
+		 return productService.findAll(customerId);
 	}
 
 	/**
@@ -29,7 +25,7 @@ public class ProductApiImpl implements ProductApi {
 	 * 
 	 * @return
 	 */
-	public List<CustomerAndProductVo> findAllAndTheListOf(String aera) {
+	public ResVo findAllAndTheListOf(String aera) {
 
 		return productService.findAllAndTheListOf(aera);
 	}
@@ -37,7 +33,7 @@ public class ProductApiImpl implements ProductApi {
 	/**
 	 * 首页
 	 */
-	public List<CustomerAndProductVo> customerAndProductFind() {
+	public ResVo customerAndProductFind() {
 		return productService.customerAndProductFind();
 	}
 
@@ -55,5 +51,11 @@ public class ProductApiImpl implements ProductApi {
 	public ResVo modifyreadthenumber(Long productId) {
 		return productService.modifyreadthenumber(productId);
 	}
+
+	public ResVo addProduct(ProductAndSkuBO product) {
+		return productService.addProduct(product);
+	}
+
+	
 
 }

@@ -1,6 +1,6 @@
 package com.xxh.fang.api;
 
-import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -17,15 +17,15 @@ public class CommentApiImpl implements CommentApi {
 	@Resource
 	CommentService commentServiceImpl;
 
-	public List<CommentVo> sentimentHigh() {
+	public ResVo sentimentHigh() {
 		return commentServiceImpl.sentimentHigh();
 	}
 
-	public List<CommentVo> newest() {
+	public ResVo newest() {
 		return commentServiceImpl.newest();
 	}
 
-	public List<CommentVo> earliest() {
+	public ResVo earliest() {
 		return commentServiceImpl.earliest();
 	}
 
@@ -38,8 +38,12 @@ public class CommentApiImpl implements CommentApi {
 		return commentServiceImpl.updatePointOfpraise(commentVo);
 	}
 
-	public Integer addGivealike(GivealikeVo givealikeVo) {
-		return commentServiceImpl.addGivealike(givealikeVo);
+	public ResVo addGivealike(GivealikeVo givealikevo) {
+		return commentServiceImpl.addGivealike(givealikevo);
+	}
+
+	public Map<String, Object> FocusOn(Long customerId) {
+		return commentServiceImpl.FocusOn(customerId);
 	}
 
 }

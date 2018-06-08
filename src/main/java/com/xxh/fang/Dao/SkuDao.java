@@ -10,7 +10,7 @@ import com.xxh.fang.entity.SkuVo;
 @Repository("skudao")
 public interface SkuDao {
 	
-	public List<SkuVo> findById(Long productid);
+	public List<SkuPo> findById(Long productid);
 	
 	public Integer modifySku(SkuVo skuVo);
 	

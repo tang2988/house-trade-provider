@@ -216,7 +216,10 @@ public class ProductServiceImpl implements ProductService {
 		}
 
 		ProductVo vo = product.getProductVo();
-		Integer addProduct = productDao.addProduct(vo);
+		ProductPo addpo = new ProductPo();
+		BeanUtils.copyProperties(vo, addpo);
+
+		Integer addProduct = productDao.addProduct(addpo);
 		if (addProduct < 1) {
 			bo.setMsg("添加失败");
 			return bo;
@@ -243,39 +246,51 @@ public class ProductServiceImpl implements ProductService {
 	/*
 	 * 查询所有产品
 	 */
-	public List<ProductVo> findAll() {
+	public ResVo findAll(Long customerId) {
+		ResVo resvo = new ResVo();
 		List<ProductVo> list = new ArrayList<ProductVo>();
-		List<ProductPo> po = productDao.findAll();
+		List<ProductPo> po = productDao.findAll(customerId);
 		for (ProductPo p : po) {
-			ProductVo pv = new ProductVo();
-			BeanUtils.copyProperties(p, pv);
-			list.add(pv);
+			ProductVo vo = new ProductVo();
+			BeanUtils.copyProperties(p, vo);
+			list.add(vo);
 		}
-		return list;
+		resvo.setData(list);
+		return resvo;
 	}
 
 	/**
 	 * 区查询
 	 */
-	public List<CustomerAndProductVo> findAllAndTheListOf(String aera) {
-		return productDao.findAllAndTheListOf(aera);
+	public ResVo findAllAndTheListOf(String aera) {
+		ResVo resvo = new ResVo();
+		List<CustomerAndProductVo> andProductVos = productDao.findAllAndTheListOf(aera);
+		resvo.setData(andProductVos);
+		return resvo;
 	}
 
 	/**
 	 * 首页
 	 */
-	public List<CustomerAndProductVo> customerAndProductFind() {
-		return productDao.customerAndProductFind();
+	public ResVo customerAndProductFind() {
+		ResVo resvo = new ResVo();
+		List<CustomerAndProductVo> andProductVos = productDao.customerAndProductFind();
+		resvo.setData(andProductVos);
+		return resvo;
 
 	}
 
 	public ProductAndSkuVo findProductAndSku(ProductAndSkuVo productAndSkuVo) {
-
-		ProductVo vo = productDao.findProductId(productAndSkuVo.getProductVo().getProduct_id());
-
-		List<SkuVo> listskuvo = skuDao.findById(productAndSkuVo.getProductVo().getProduct_id());
-		productAndSkuVo.setSkuList(listskuvo);
-		productAndSkuVo.setProductVo(vo);
+		ResVo resvo = new ResVo();
+		ProductPo po = productDao.findProductId(productAndSkuVo.getProductVo().getProduct_id());
+		ProductVo productVo = new ProductVo();
+		BeanUtils.copyProperties(po, productVo);
+		List<SkuPo> listskuvo = skuDao.findById(productAndSkuVo.getProductVo().getProduct_id());
+		List<SkuVo> vo = new ArrayList<SkuVo>();
+		BeanUtils.copyProperties(listskuvo, vo);
+		productAndSkuVo.setSkuList(vo);
+		productAndSkuVo.setProductVo(productVo);
+		resvo.setData(productAndSkuVo);
 		return productAndSkuVo;
 	}
 
@@ -286,14 +301,15 @@ public class ProductServiceImpl implements ProductService {
 			vo.setMsg("修改失败");
 			vo.setSuccess(false);
 		}
-		ProductVo findProductId = productDao.findProductId(productId);
+		ProductPo findProductId = productDao.findProductId(productId);
 		if (findProductId != null) {
+			ProductVo productvo = new ProductVo();
+			BeanUtils.copyProperties(findProductId, productvo);
 			vo.setMsg("修改成功");
-			vo.setData(findProductId);
+			vo.setData(productvo);
 			vo.setSuccess(true);
 		} else {
 			vo.setMsg("失败");
-
 			vo.setSuccess(false);
 		}
 

@@ -3,10 +3,10 @@ package com.xxh.fang.Service;
 import java.util.List;
 
 import com.xxh.fang.Util.ResVo;
-import com.xxh.fang.entity.CustomerAndProductVo;
 import com.xxh.fang.entity.ModifyProductVo;
 import com.xxh.fang.entity.ProductAndSkuBO;
 import com.xxh.fang.entity.ProductAndSkuVo;
+import com.xxh.fang.entity.ProductPo;
 import com.xxh.fang.entity.ProductVo;
 
 public interface ProductService {
@@ -47,21 +47,21 @@ public interface ProductService {
 	/**
 	 * 查询产品所有
 	 */
-	public List<ProductVo> findAll();
+	public ResVo findAll(Long customerId);
 
 	/**
 	 *区查询
 	 * 
 	 * @return
 	 */
-	public List<CustomerAndProductVo> findAllAndTheListOf(String aera);
+	public ResVo findAllAndTheListOf(String aera);
 
 	/**
 	 * 用户产品表
 	 * 
 	 * @return
 	 */
-	public List<CustomerAndProductVo> customerAndProductFind();
+	public ResVo customerAndProductFind();
 	
 	/**
 	 * 产品id查询 

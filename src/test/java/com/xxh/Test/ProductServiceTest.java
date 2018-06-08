@@ -155,7 +155,7 @@ public class ProductServiceTest {
 		
 		System.out.println(b);
 	}*/
-	@Test
+	/*@Test
 	public void findAll() {
 		List<CustomerAndProductVo> b = productServiceImpl.customerAndProductFind();
 		System.out.println(b);
@@ -170,5 +170,5 @@ public class ProductServiceTest {
 	public void modi(){
 		 ResVo b = productServiceImpl.modifyreadthenumber(20L);
 		 System.out.println(b);
-	}
+	}*/
 }
