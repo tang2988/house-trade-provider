@@ -316,4 +316,27 @@ public class ProductServiceImpl implements ProductService {
 		return vo;
 	}
 
+	public ResVo modifyProductAndSku(ProductAndSkuVo productAndSkuVo) {
+		ResVo resvo = new ResVo();
+		// 修改产品
+		Integer modifyproduct = productDao.modifyProduct(productAndSkuVo.getProductVo());
+		if (modifyproduct < 1) {
+			resvo.setMsg("修改失败");
+			resvo.setSuccess(false);
+		}
+		List<SkuVo> listSkuvo = productAndSkuVo.getSkuList();
+		for (SkuVo skuvo : listSkuvo) {
+			Integer modifysku = skuDao.modifySku(skuvo);
+			if (modifysku < 1) {
+				resvo.setMsg("修改成功");
+				resvo.setSuccess(true);
+			}
+			resvo.setMsg("修改成功");
+			resvo.setSuccess(true);
+			resvo.setData(productAndSkuVo);
+		}
+
+		return resvo;
+	}
+
 }

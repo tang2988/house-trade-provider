@@ -1,12 +1,9 @@
 package com.xxh.fang.Service;
 
-import java.util.List;
-
 import com.xxh.fang.Util.ResVo;
 import com.xxh.fang.entity.ModifyProductVo;
 import com.xxh.fang.entity.ProductAndSkuBO;
 import com.xxh.fang.entity.ProductAndSkuVo;
-import com.xxh.fang.entity.ProductPo;
 import com.xxh.fang.entity.ProductVo;
 
 public interface ProductService {
@@ -50,7 +47,7 @@ public interface ProductService {
 	public ResVo findAll(Long customerId);
 
 	/**
-	 *区查询
+	 * 区查询
 	 * 
 	 * @return
 	 */
@@ -62,16 +59,19 @@ public interface ProductService {
 	 * @return
 	 */
 	public ResVo customerAndProductFind();
-	
+
 	/**
-	 * 产品id查询 
+	 * 产品id查询
 	 */
 	public ProductAndSkuVo findProductAndSku(ProductAndSkuVo productAndSkuVo);
-	
+
 	/**
 	 * 閲讀數
+	 * 
 	 * @param productId
 	 * @return
 	 */
 	public ResVo modifyreadthenumber(Long productId);
+
+	public ResVo modifyProductAndSku(ProductAndSkuVo productAndSkuVo);
 }
